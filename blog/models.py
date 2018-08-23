@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils import timezone
-
+from sorl.thumbnail import ImageField
+from sorl.thumbnail import get_thumbnail
+from sorl.thumbnail import delete
 
 class Post(models.Model):
     author = models.ForeignKey('auth.User', on_delete=models.CASCADE)
@@ -10,7 +12,7 @@ class Post(models.Model):
             default=timezone.now)
     published_date = models.DateTimeField(
             blank=True, null=True)
-    image = models.ImageField(blank=True, upload_to='images/blog/%Y/%m/%d')
+    image = models.ImageField(blank=True, upload_to='images/blog/')
 
     def publish(self):
         self.published_date = timezone.now()

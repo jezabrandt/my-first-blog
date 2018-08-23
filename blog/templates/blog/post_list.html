@@ -9,8 +9,8 @@
         </div>
         {% for post in posts %}
             <div>
-                {% if person.image %}
-                    <img src="{{ post.image.url }}">
+                {% if post.image %}
+                    <img src="{{ MEDIA_URL }}{{ post.image.url }}" alt="img">
                 {% endif %}
                 <p>published: {{ post.published_date }}</p>
                 <h1><a href="">{{ post.title }}</a></h1>

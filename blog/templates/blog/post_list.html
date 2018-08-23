@@ -1,13 +1,20 @@
-{% extends 'blog/base.html' %}
-
-{% block content %}
-    {% for post in posts %}
-        <div class="post">
-            <div class="date">
-                {{ post.published_date }}
-            </div>
-            <h1><a href="">{{ post.title }}</a></h1>
-            <p>{{ post.text|linebreaksbr }}</p>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <div>
+            <h1><a href="/">Django Girls Blog</a></h1>
         </div>
-    {% endfor %}
-{% endblock %}
+        {% for post in posts %}
+            <div>
+                {% if person.image %}
+                    <img src="{{ post.image.url }}">
+                {% endif %}
+                <p>published: {{ post.published_date }}</p>
+                <h1><a href="">{{ post.title }}</a></h1>
+                <p>{{ post.text|linebreaksbr }}</p>
+            {% endfor %}
+        </body>
+    </html>

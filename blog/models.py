@@ -5,7 +5,6 @@ from sorl.thumbnail import get_thumbnail
 from sorl.thumbnail import delete
 
 
-
 class Post(models.Model):
     author = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     title = models.CharField(max_length=200)

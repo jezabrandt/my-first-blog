@@ -1,22 +1,33 @@
-<!DOCTYPE html>
+{% load static %}
 <html>
     <head>
-        <title></title>
-        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+        <title>lula's recepies</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
     </head>
     <body>
-        <div>
-            <h1><a href="/">Django Girls Blog</a></h1>
+        <div class="page-header">
+            <h1><a href="/"></a></h1>
         </div>
-        {% for post in posts %}
-            <div>
-                {% if post.image %}
-                    <img src="{{ MEDIA_URL }}{{ post.get_image_200x200.url }}" alt="img">
-                {% endif %}
-                <p>published: {{ post.published_date }}</p>
-                <h1><a href="">{{ post.title }}</a></h1>
-                <p>{{ post.text|linebreaksbr }}</p>
-            {% endfor %}
-        </body>
-    </html>
+        <div class="content container">
+            <div class="row">
+                <div class="col-md-8">
+                    {% for post in posts %}
+                        <div class="post">
+                            <div class="date">
+                                <h3><a href="">{{ post.title }}</a></h3>
+                                <p>Опубликовано: {{ post.published_date }}</p>
+                            </div>
+                            <p>{{ post.text|linebreaksbr }}</p>
+                        </div>
+                        {% if post.image %}
+                            <img src="{{ MEDIA_URL }}{{ post.get_image_200x200.url }}" alt="img">
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

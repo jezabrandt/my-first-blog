@@ -6,10 +6,25 @@
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
         <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+        <script type="text/javascript">
+            $( document ).ready(function() {
+                // $('.show-more-text').closest('div').find('.wrapped').removeClass('wrapped')
+                $( ".show-more-text" ).click(function() {
+                    $(this).closest('div').find('.wrapped').removeClass('wrapped');
+                    $(this).closest('div').find('.show-less-text').removeClass('hidden');
+                    $(this).addClass('hidden')
+                });
+                $( ".show-less-text" ).click(function() {
+                    $(this).closest('div').find('.full-text').addClass('wrapped');
+                    $(this).closest('div').find('.show-more-text').removeClass('hidden');
+                    $(this).addClass('hidden')
+                });
+            });
+        </script>
     </head>
     <body>
-        <div class="page-header">
-            <h1><a href="/"></a></h1>
+        <div class="background-header">
         </div>
         <div class="content container">
             <div class="row">
@@ -20,7 +35,15 @@
                                 <h3><a href="">{{ post.title }}</a></h3>
                                 <p>Опубликовано: {{ post.published_date }}</p>
                             </div>
-                            <p>{{ post.text|linebreaksbr }}</p>
+                            <div id="post-text">
+
+                                <div class="full-text wrapped">
+                                    {{ post.text|linebreaksbr }}
+                                </div>                                
+                                <a class="show-more-text">Подробнее</a>
+                                <a class="show-less-text hidden">Свернуть</a>
+
+                            </div>
                         </div>
                         {% if post.image %}
                             <img src="{{ MEDIA_URL }}{{ post.get_image_200x200.url }}" alt="img">
